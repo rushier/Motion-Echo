@@ -22,14 +22,7 @@ The model and code are available for non-commercial (NC) research purposes only.
 -----
 
 ### Requirements:
-The code is implemented based on Tensorflow 2.4.0 with CUDA 11.4, OpenCV 4.7.0 and Python 3.8.16. It is tested in Ubuntu 18.04.5 with one 24GB GeForce RTX 3090Ti GPU. GPU usage is about 24GB.
-Some important required packages include:
-
-* Numpy == 1.19.5
-* Nibabel == 5.0.1
-* scikit-learn == 1.2.1
-* imgaug == 0.4.0
-* matplotlib == 3.4.3
+The code is implemented based on Pytorch 2.0.1 with CUDA 12.4 and Python 3.8.19. It is trained and tested with two NVIDIA GeForce RTX 4090 GPUs. Clone this repository and install all the necessary dependecies written in the `requirements.txt` file with `pip install -r requirements.txt`. 
 
 ### Datasets
 
@@ -37,34 +30,26 @@ The raw data should be structured as follows:
 
 ```
 ├── Dataset
-    ├── HCC_001
-    │   ├── pre_AP_image.nii.gz
-    │   ├── pre_VP_image.nii.gz
-    │   ├── post_AP_image.nii.gz
-    │   ├── post_VP_image.nii.gz
-    │   ├── pre_liver.nii.gz
-    │   ├── pre_tumor.nii.gz
-    │   ├── post_liver.nii.gz
-    │   ├── post_tumor.nii.gz
-    ├── HCC_002
-    │   ├── pre_AP_image.nii.gz
-    │   ├── pre_VP_image.nii.gz
-    │   ├── post_AP_image.nii.gz
-    │   ├── post_VP_image.nii.gz
-    │   ├── pre_liver.nii.gz
-    │   ├── pre_tumor.nii.gz
-    │   ├── post_liver.nii.gz
-    │   ├── post_tumor.nii.gz   
+    ├── ZZ121836
+    │   ├── L5RCI9AO_a2c.npz
+    │   ├── L5RCH42C_a3c.npz
+    │   ├── L5RCGKA2_a4c.npz
+    │   ├── L5RCL1C8_mid.npz
+    │   ├── L5RCKJ3U_mv.npz
+    ├── YL121426
+    │   ├── L3KCJM40_a2c.npz
+    │   ├── L3KCJARS_a3c.npz
+    │   ├── L3KCG81Q_a4c.npz
+    │   ├── L3KCL8T6_mid.npz
+    │   ├── L3KCKSSM_mv.npz 
 ```
-You can preprocess the raw data following these files: data_preprocess/preprocess.py, data_preprocess/get_roi.py, data_preprocess/registration.py
-
 ### Usage
 
-1. Run the following commands for training.
+1. Run the following commands for training Motion-Echo.
 ```python
 python train.py --epochs 120 --train_dir '../JSPH_TACE_train_data_STW' --transformer_layers 3 --response_mode 'concat' --survival_mode 'add'
 ```
-2. Run the following commands for testing.
+2. Run the following commands for training Motion-Echo_2d+t.
 ```python
-python test.py --train_log 'log.csv' --transformer_layers 3 --response_mode 'concat' --survival_mode 'add'
+CUDA_VISIBLE_DEVICES=0 python main_Motion-Echo_2d+t.py --task seg --dataset Huaxi3d --info_csv '/path_to_training_csv/train_val_test.csv' --size 112 --loss DiceLoss --bs 16 --ms [80,160] --epoch 201 --model_save_freq 20  --model_dir 'save_models/' --root_path '/path_to_echocardiograms/qq_raw_cycles/'  --num_classes 3 --network SpaceTimeUnet --chamber a4c_a2c_a3c --lr 1e-4
 ```
