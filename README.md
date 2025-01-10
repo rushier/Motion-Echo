@@ -4,7 +4,7 @@ This repository provides the detailed code for the paper "Digital Profile of Ped
 
 We collected a pediatric dataset comprising 11,096 videos, covering children diagnosed with solid tumors and DMD. In conjunction with public adult datasets from four cohorts, the datasets total around 22,393 videos. Motion-Echo system is proposed, which   innovatively integrates the context compensation module and motion estimation module with a semi-supervised learning strategy. Myocardial global strain is estimated in a holistic video level based on the cardiac segmentation. The mean absolute deviation for global longitudinal strain (GLS) and global circumferential strain (GCS) are 2.099 and 2.665 with Pearson correlation coefficients of 0.799 and 0.781, respectively. Motion-Echo is validated across various populations, image qualities, and vendors. Ultimately, focusing on the primary concerns in pediatric CVDs, three downstream challenging tasks: CTRCD event predicting, late gadolinium enhancement (LGE) diagnosis and left ventricular ejection fraction (LVEF) decrease prediction are quantitatively evaluated, thereby facilitating the early warning of subclinical cardiac dysfunction. 
 
-
+![image](https://github.com/rushier/Motion-Echo/blob/main/digital_profile.svg)
 -----
 
 ### Citation and license
