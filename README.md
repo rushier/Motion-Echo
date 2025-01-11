@@ -43,6 +43,16 @@ The raw data should be structured as follows:
     │   ├── L3KCL8T6_mid.npz
     │   ├── L3KCKSSM_mv.npz 
 ```
+The file train_val_test.csv for training and testing should be structured as follows:
+```
+| path                                         | cycle_number | PID      | Echodate | HR  | image_number | duration | chamber | gls | split | select_slice | gls_cycles            |
+|----------------------------------------------|--------------|----------|----------|-----|--------------|----------|---------|-----|-------|--------------|-----------------------|
+| data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 1            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | 10           | [24.19, 20.75, 24.06] |
+| data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 2            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | 2            | [24.19, 20.75, 24.06] |
+| data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 3            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | 8            | [24.19, 20.75, 24.06] |
+| data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 4            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | random       | [24.19, 20.75, 24.06] |
+```
+
 ### Usage
 
 1. Run the following commands for training and testing Motion-Echo.
