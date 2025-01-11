@@ -44,14 +44,12 @@ The raw data should be structured as follows:
     │   ├── L3KCKSSM_mv.npz 
 ```
 The file train_val_test.csv for training and testing should be structured as follows:
-```
 | path                                         | cycle_number | PID      | Echodate | HR  | image_number | duration | chamber | gls | split | select_slice | gls_cycles            |
 |----------------------------------------------|--------------|----------|----------|-----|--------------|----------|---------|-----|-------|--------------|-----------------------|
 | data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 1            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | 10           | [24.19, 20.75, 24.06] |
 | data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 2            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | 2            | [24.19, 20.75, 24.06] |
 | data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 3            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | 8            | [24.19, 20.75, 24.06] |
 | data3/GEMS_IMG/2022_FEB/12/ZR113824/M2CBSPR4 | 4            | 10002091 | 20220212 | 108 | 50           | 3.96     | a4c     | 23  | val   | random       | [24.19, 20.75, 24.06] |
-```
 
 ### Usage
 
@@ -64,8 +62,8 @@ CUDA_VISIBLE_DEVICES=0 python main_Motion-Echo.py --task seg --dataset huaxi2d -
 ```
 2. Run the following commands for training and testing Motion-Echo_2d+t.
 ```python
-CUDA_VISIBLE_DEVICES=0 python main_Motion-Echo_2d+t.py --task seg --dataset Huaxi3d --info_csv '/ailab/group/pjlab-medai/qianyi/jiaorushi/GLS/code/Oncocardiology_huaxi/DeepGLS/load/train_val_test_zhaoli_1129_cycles_labeled_0220.csv' --size 112 --loss DiceLoss --bs 2 --ms [40,80] --epoch 81 --model_save_freq 100  --model_dir 'save_models_aug/' --root_path '/ailab/group/pjlab-medai/qianyi/jiaorushi/GLS/data/qq_raw_cycles/'  --num_classes 3 --network SpaceTimeUnet --chamber a4c_a2c_a3c --lr 1e-4 --prior
+CUDA_VISIBLE_DEVICES=0 python main_Motion-Echo_2d+t.py --task seg --dataset Huaxi3d --info_csv '/path_to_training_csv/train_val_test.csv' --size 112 --loss DiceLoss --bs 2 --ms [80,160] --epoch 201 --model_save_freq 20  --model_dir 'save_models/' --root_path '/path_to_echocardiograms/qq_raw_cycles/'  --num_classes 3 --network SpaceTimeUnet --chamber a4c_a2c_a3c --lr 1e-4 --prior
 ```
 ```python
-CUDA_VISIBLE_DEVICES=0 python main_Motion-Echo_2d+t.py --task seg --dataset Huaxi3d --info_csv '/ailab/group/pjlab-medai/qianyi/jiaorushi/GLS/code/Oncocardiology_huaxi/DeepGLS/load/train_val_test_zhaoli_1129_cycles_labeled_0220.csv' --size 112 --loss DiceLoss --bs 1 --ms [40,80] --epoch 81 --model_save_freq 100  --model_dir 'save_models_aug/' --root_path '/ailab/group/pjlab-medai/qianyi/jiaorushi/GLS/data/qq_raw_cycles/'  --num_classes 3 --network SpaceTimeUnet --chamber a4c_a2c_a3c --lr 1e-4 --prior --test
+CUDA_VISIBLE_DEVICES=0 python main_Motion-Echo_2d+t.py --task seg --dataset Huaxi3d --info_csv '/path_to_training_csv/train_val_test.csv' --size 112 --loss DiceLoss --bs 1 --ms [80,160] --epoch 201 --model_save_freq 20  --model_dir 'save_models/' --root_path '/path_to_echocardiograms/qq_raw_cycles/'  --num_classes 3 --network SpaceTimeUnet --chamber a4c_a2c_a3c --lr 1e-4 --prior --test
 ```
