@@ -16,7 +16,7 @@ The model and code are available for non-commercial (NC) research purposes only.
 
 ### News
 - [x] The training and inference code of Motion-Echo
-- [x] The model weights of Motion-Echo
+- [x] The model weights of Motion-Echo are available at [Google Drive](https://drive.google.com/drive/folders/15IiwWHSO-TNt4PcS5sVWFGtgtIPfFqQP?usp=sharing).
 - [x] A subset of de-identified echocardiograms used for training Motion-Echo will be made available upon request. Please contact **rushijiao@sjtu.edu.cn** for access.
  
 -----
